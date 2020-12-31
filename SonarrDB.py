@@ -1,6 +1,7 @@
 import sqlite3
 
 sqlfile = sqlite3.connect("nzbdrone.db")
+#* Choose the route to your new media path in the linux machine *#
 newRoute = '/media/'
 # if your pathing is different change the if statements
 # Edits RootFolder Path
@@ -9,7 +10,7 @@ def RootF ():
     cursor.execute("SELECT * FROM RootFolders")
     data = cursor.fetchall()
     for row in data:
-        if row[1][:4] != '/med':
+        if row[1][:4] != '/med': #! Change if your new path isn't /media
             directories = row[1][3:].strip('\\')
             newPath = newRoute + directories
             oldPath = row[1]
@@ -23,7 +24,7 @@ def Series():
     cursor.execute("SELECT Path FROM Series")
     data = cursor.fetchall()
     for row in data:
-        if row[0][:4] != '/med':
+        if row[0][:4] != '/med': #! Change if your new path isn't /media
             #print(row)
             directory, filename = row[0][3:].split("\\")
             directory = directory.replace("shows", "Shows")
